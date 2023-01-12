@@ -56,7 +56,6 @@ const App = () => {
         <Navbar />
         <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
           Cart goes here...
-          <p></p>
         </Drawer>
         <StyledButton onClick={() => setCartOpen(true)}>
           <Badge badgeContent={getTotalItems(cartItems)} color="error">
