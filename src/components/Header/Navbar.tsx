@@ -7,7 +7,7 @@ export default function Navbar() {
     <Wrapper>
       <div className="navbar">
         <div className="brand">
-          <h1>Chimoney Cart</h1>
+          <h3>Chimoney Cart</h3>
         </div>
       </div>
     </Wrapper>

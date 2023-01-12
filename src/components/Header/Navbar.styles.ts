@@ -20,7 +20,8 @@ export const Wrapper = styled.div`
     .brand {
         font-family: "Arial";
     }
-    h1 {
+    h3 {
         color: "#670B78 !important";
+        font-size:"16px"
     }
 `;
