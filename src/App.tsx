@@ -1,14 +1,19 @@
+import { useState } from "react";
 
 // Components
+import Navbar from "./components/Header/Navbar";
+import Item from "./components/Item/Item";
+
+
 import Drawer from "@material-ui/core/Drawer";
-import Grid from "@material-ui/core/Grid";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Badge from "@material-ui/core/Badge";
+import Grid from "@material-ui/core/Grid";
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Navbar from "./components/Header/Navbar";
+
 
 // Styles
-import { Wrapper } from "./App.styles";
+import { Wrapper, StyledButton } from "./App.styles";
 import { useQuery } from "react-query";
 
 // Types
@@ -33,9 +38,10 @@ const App = () => {
     getProducts
   )
 
-  console.log(data);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([] as CartItemType[]);
 
-  const getTotalItems = () => null;
+  const getTotalItems = (items: CartItemType[]) => items.reduce((accumulator: number, item: CartItemType) => accumulator + item.amount, 0);
 
   const handleAddToCart = (clickedItem: CartItemType) => null;
 
@@ -46,7 +52,25 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar />
+      <Wrapper>
+        <Navbar />
+        <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
+          Cart goes here...
+          <p></p>
+        </Drawer>
+        <StyledButton onClick={() => setCartOpen(true)}>
+          <Badge badgeContent={getTotalItems(cartItems)} color="error">
+            <AddShoppingCartIcon />
+          </Badge>
+        </StyledButton>
+        <Grid container spacing={4}>
+          {data?.map(item => (
+            <Grid item key={item.id} xs={12} sm={3}>
+              <Item item={item} handleAddToCart={handleAddToCart} />
+            </Grid>
+          ))}
+        </Grid>
+      </Wrapper>
     </div>
   );
 }
