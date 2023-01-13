@@ -1,10 +1,3 @@
-import { useState } from "react";
-import Drawer from "@material-ui/core/Drawer";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import Badge from "@material-ui/core/Badge";
-
-import { CartItemType } from "../../App";
-
 import "./Navbar.styles"
 
 import { Wrapper } from "./Navbar.styles";
